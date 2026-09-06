@@ -1,0 +1,45 @@
+<% layout("/layouts/boilerplate") %>
+
+<div class="flex justify-between items-center mb-6" style="flex-wrap: wrap; gap: 1rem;">
+    <div>
+        <h1 class="mb-2">All Listings</h1>
+        <p class="mb-0">Handpicked stays, ready for your next trip.</p>
+    </div>
+
+    <% if (currentUser) { %>
+
+        <div class="flex items-center gap-3">
+            <span class="text-secondary">Welcome, <%= currentUser.name %>!</span>
+            <a href="/logout" class="btn btn-secondary">Logout</a>
+        </div>
+
+    <% } else { %>
+
+        <a href="/auth/google" class="btn btn-primary">Continue with Google</a>
+
+    <% } %>
+</div>
+
+<div class="listings-grid">
+    <% for (let listing of listings) { %>
+        <a href="/listings/<%= listing._id %>" class="listing-card">
+            <div class="listing-card-img-wrapper">
+                <img
+                    src="<%= listing.image.url %>"
+                    class="listing-card-img"
+                    alt="listing image"
+                >
+            </div>
+
+            <div class="listing-card-content">
+                <div class="listing-card-location"><%= listing.title %></div>
+                <div class="listing-card-price">
+                    <span class="listing-card-price-amount">
+                        <%= listing.price.toLocaleString('en-IN', { style: 'currency', currency: 'INR', maximumFractionDigits: 0 }) %>
+                    </span>
+                    <span class="listing-card-price-period">/ night</span>
+                </div>
+            </div>
+        </a>
+    <% } %>
+</div>

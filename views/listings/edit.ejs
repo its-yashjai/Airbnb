@@ -1,0 +1,94 @@
+<% layout("/layouts/boilerplate") %>
+
+<div class="form-container">
+    <div class="form-section">
+        <h1 class="form-section-title">Edit Listing</h1>
+        <p class="form-section-description">Update the details travelers will see.</p>
+
+        <form action="/listings/<%= listing._id %>" method="POST" class="needs-validation" novalidate>
+            <input type="hidden" name="_method" value="PUT">
+
+            <div class="form-group">
+                <label for="title" class="form-label">Title</label>
+                <input
+                    type="text"
+                    name="title"
+                    id="title"
+                    value="<%= listing.title %>"
+                    class="form-control"
+                    required
+                >
+                <div class="error-message">Please provide a title for your listing.</div>
+            </div>
+
+            <div class="form-group">
+                <label for="description" class="form-label">Description</label>
+                <textarea
+                    name="description"
+                    id="description"
+                    class="form-control"
+                    required
+                ><%= listing.description %></textarea>
+                <div class="error-message">Please provide a description for your listing.</div>
+            </div>
+
+            <div class="form-group">
+                <label for="image" class="form-label">Image URL</label>
+                <input
+                    type="text"
+                    name="image.url"
+                    id="image"
+                    value="<%= listing.image.url %>"
+                    class="form-control"
+                    required
+                >
+            </div>
+
+            <div class="form-row">
+                <div class="form-group">
+                    <label for="price" class="form-label">Price</label>
+                    <input
+                        type="number"
+                        name="price"
+                        id="price"
+                        value="<%= listing.price %>"
+                        class="form-control"
+                        required
+                    >
+                    <div class="error-message">Please provide a price for your listing.</div>
+                </div>
+
+                <div class="form-group">
+                    <label for="country" class="form-label">Country</label>
+                    <input
+                        type="text"
+                        name="country"
+                        id="country"
+                        value="<%= listing.country %>"
+                        class="form-control"
+                        required
+                    >
+                    <div class="error-message">Please provide a country for your listing.</div>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="location" class="form-label">Location</label>
+                <input
+                    type="text"
+                    name="location"
+                    id="location"
+                    value="<%= listing.location %>"
+                    class="form-control"
+                    required
+                >
+                <div class="error-message">Please provide a location for your listing.</div>
+            </div>
+
+            <div class="form-actions">
+                <button type="submit" class="btn btn-primary">Update Listing</button>
+            </div>
+
+        </form>
+    </div>
+</div>
